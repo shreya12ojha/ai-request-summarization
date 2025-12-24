@@ -18,13 +18,18 @@ This project automates that workflow using AI.
 ---
 
 ## Architecture Overview
-- Client (HTTP Request)
-  - HTTP Orchestration Layer  
-    *(Local simulation of Azure Logic App)*
-    - Azure Function (Python)
-      - OpenAI API
-        - Summary + Category (JSON Response)
-
+```txt
+Client (HTTP Request)
+│
+└── HTTP Orchestration Layer
+    (Local simulation of Azure Logic App)
+        │
+        └── Azure Function (Python)
+                │
+                └── OpenAI API
+                        │
+                        └── Summary + Category (JSON Response)
+```
 
 
 ### Architecture Explanation
