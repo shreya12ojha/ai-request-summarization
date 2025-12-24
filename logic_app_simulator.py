@@ -11,7 +11,7 @@ AZURE_FUNCTION_URL = "http://localhost:7071/api/SummarizeRequest"
 
 @app.post("/process-request")
 def process_request(payload: dict):
-    # Step 1: Validate input
+    #Validate input
     text = payload.get("text")
     if not text or not isinstance(text, str):
         raise HTTPException(
@@ -19,7 +19,7 @@ def process_request(payload: dict):
             detail="Invalid input: 'text' field is required"
         )
 
-    # Step 2: Call Azure Function
+    #Call Azure Function
     try:
         response = requests.post(
             AZURE_FUNCTION_URL,
@@ -32,12 +32,12 @@ def process_request(payload: dict):
             detail="Failed to reach Azure Function"
         )
 
-    # Step 3: Handle function errors
+    #Handle function errors
     if response.status_code != 200:
         raise HTTPException(
             status_code=500,
             detail="Azure Function returned an error"
         )
 
-    # Step 4: Return structured response
+    #Return structured response
     return response.json()
